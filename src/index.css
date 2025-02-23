@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@keyframes slide-in-navbar {
+    0% {
+        opacity: 0;
+        transform: translateX(-25%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out-navbar {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-25%);
+    }
+}
+
+@keyframes spin-hamburger-click {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes spinback-hamburger-click {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@theme {
+
+    --animate-slide-in-navbar: slide-in-navbar 0.3s ease-out;
+    --animate-slide-out-navbar: slide-out-navbar 0.3s ease-out;
+    --animate-spin-hamburger-click: spin-hamburger-click 0.3s ease-in-out;
+    --animate-spinback-hamburger-click: spinback-hamburger-click 0.3s ease-in-out;
+    --font-seven-segment: 'Seven Segment', sans-serif;
+
+    --color-fuchsia-500: oklch(66.7% 0.26 321deg);
+    --color-fuchsia-600: oklch(60.1% 0.29 316deg);
+    --color-gray-800: oklch(28.6% 0.02 257deg);
+    --color-gray-900: oklch(20.9% 0.01 257deg);
+}
