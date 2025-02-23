@@ -44,8 +44,29 @@
     }
 }
 
-@theme {
+@keyframes zoom-in {
+    0% {
+        transform: scale(0);
+    }
 
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoom-out {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@theme {
+    --animate-zoom-in: zoom-in 0.3s ease-in-out;
+    --animate-zoom-out: zoom-out 0.3s ease-in-out;
     --animate-slide-in-navbar: slide-in-navbar 0.3s ease-out;
     --animate-slide-out-navbar: slide-out-navbar 0.3s ease-out;
     --animate-spin-hamburger-click: spin-hamburger-click 0.3s ease-in-out;
