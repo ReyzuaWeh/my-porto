@@ -3,6 +3,7 @@ import { FiGithub } from "react-icons/fi"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { MdOutlineEmail } from "react-icons/md"
 import { Project } from "../../utils/fetchTypes"
+import { DataRoute } from "../../utils/OurRoute"
 
 const MainSidebar = ({ setSelectedProjects }: {
     setSelectedProjects?: React.Dispatch<React.SetStateAction<Project | null>>
@@ -10,9 +11,10 @@ const MainSidebar = ({ setSelectedProjects }: {
     const [OpenSidebar, SetOpenSidebar] = useState(false)
     const [OpenNavbar, SetOpenNavbar] = useState(false)
     const navigation = [
-        { name: 'About', href: '#about' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Achievements', href: '#achievements' }
+        { name: 'About', href: `${DataRoute["Home"]}#about` },
+        { name: 'Projects', href: `${DataRoute["Home"]}#projects` },
+        { name: 'Achievements', href: `${DataRoute["Home"]}#achievements` },
+        { name: 'Skills', href: `${DataRoute["Home"]}#skills` },
     ];
     const [onProgressProjects] = useState<Project[]>([
         {
@@ -32,15 +34,14 @@ const MainSidebar = ({ setSelectedProjects }: {
         },
     ]);
     const projects = onProgressProjects;
-
-    const [activeHash, setActiveHash] = useState(window.location.hash || '#about');
+    const [activeHash, setActiveHash] = useState(window.location.pathname + window.location.hash || `${DataRoute["Home"]}#about`);
 
     useEffect(() => {
         const handleScroll = () => {
             let current = activeHash;
             navigation.forEach((item) => {
                 // Hapus tanda '#' untuk mendapatkan id element
-                const sectionId = item.href.slice(1);
+                const sectionId = item.href.split("#").pop() as string;
                 const sectionElement = document.getElementById(sectionId);
                 if (sectionElement) {
                     const { top, bottom } = sectionElement.getBoundingClientRect();
@@ -112,7 +113,7 @@ const MainSidebar = ({ setSelectedProjects }: {
                         </div>
 
                         {/* Projects Grid */}
-                        <div className="mt-12">
+                        <div className="mt-12 hidden md:block">
                             <h2 className="text-sm font-medium text-gray-400 mb-4">ON PROGRESS</h2>
                             <div className="space-y-3">
                                 {projects.map((project) => (

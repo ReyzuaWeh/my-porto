@@ -1,4 +1,5 @@
 interface Project {
+    id?: number | null;
     title: string;
     institution: string;
     my_position: string;
@@ -12,6 +13,7 @@ interface Project {
 }
 
 interface Certifications {
+    id?: number | null;
     name: string;
     obtained_year: number;
     institution: string;
