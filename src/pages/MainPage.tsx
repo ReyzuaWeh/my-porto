@@ -2,13 +2,12 @@ import { useState } from "react";
 import MainSidebar from "../components/common/MainSidebar";
 import ListCertifications from "../components/parts/ListCertifications";
 import ListProjects from "../components/parts/ListProjects";
+import ListSkills from "../components/parts/ListSkills";
 import DetailProjectPopUp from "../components/specific/DetailProjectPopUp";
 import { Project } from "../utils/fetchTypes";
 
 const MainPage = () => {
-
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
     return (
         <div className="min-h-screen flex bg-gray-900">
             <MainSidebar
@@ -46,7 +45,7 @@ const MainPage = () => {
                     </div>
                     <div id="projects" className="min-h-screen flex items-center">
                         <div className="w-full text-center">
-                            <h1 className="text-6xl font-seven-segment font-semibold text-white">
+                            <h1 className="lg:text-8xl md:text-6xl sm:text-4xl text-3xl font-seven-segment font-semibold text-white">
                                 Projects
                             </h1>
                         </div>
@@ -61,12 +60,20 @@ const MainPage = () => {
 
                     <div id="achievements" className="min-h-screen flex items-center">
                         <div className="w-full text-center">
-                            <h1 className="text-6xl font-seven-segment font-semibold text-white">
+                            <h1 className="lg:text-8xl md:text-6xl sm:text-4xl text-3xl font-seven-segment font-semibold text-white">
                                 Achievements
                             </h1>
                         </div>
                     </div>
                     <ListCertifications />
+                    <div id="skills" className="min-h-screen flex items-center">
+                        <div className="w-full text-center">
+                            <h1 className="lg:text-8xl md:text-6xl sm:text-4xl text-3xl font-seven-segment font-semibold text-white">
+                                Skills
+                            </h1>
+                        </div>
+                    </div>
+                    <ListSkills />
                 </div>
             </main>
         </div>

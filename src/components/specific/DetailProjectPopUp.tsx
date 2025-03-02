@@ -9,7 +9,7 @@ const DetailProjectPopUp = ({ selectedProject, setSelectedProject }: {
             <div className="animate-zoom-in bg-gray-800 rounded-lg p-6 max-w-2xl text-left w-full mx-4">
                 <div className="flex justify-between items-center mb-2">
                     <h3 className="text-white font-bold text-xl">
-                        {selectedProject.title} {selectedProject.date && (`, ${selectedProject.date}`)}
+                        {selectedProject.title} {selectedProject.date && (`, ${selectedProject.date.toString().split("T")[0]}`)}
                     </h3>
                     <button
                         onClick={() => setSelectedProject(null)}

@@ -113,7 +113,7 @@ const MainSidebar = ({ setSelectedProjects }: {
                         </div>
 
                         {/* Projects Grid */}
-                        <div className="mt-12 hidden md:block">
+                        {/* <div className="mt-12 hidden md:block">
                             <h2 className="text-sm font-medium text-gray-400 mb-4">ON PROGRESS</h2>
                             <div className="space-y-3">
                                 {projects.map((project) => (
@@ -129,20 +129,27 @@ const MainSidebar = ({ setSelectedProjects }: {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Social Links */}
                         <div className="mt-auto w-full">
                             <div className="flex w-full justify-end gap-4 mb-4">
-                                {[FiGithub, MdOutlineEmail].map((Icon, index) => (
-                                    <a
-                                        key={index}
-                                        href="#"
-                                        className="text-gray-400 hover:text-indigo-500 transition-colors duration-300"
-                                    >
-                                        <Icon size={20} />
-                                    </a>
-                                ))}
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    href="https://github.com/ReyzuaWeh"
+                                    className="text-gray-400 hover:text-indigo-500 transition-colors duration-300"
+                                >
+                                    <FiGithub size={20} />
+                                </a>
+                                <a
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    href="#"
+                                    className="text-gray-400 hover:text-indigo-500 transition-colors duration-300"
+                                >
+                                    <MdOutlineEmail size={20} />
+                                </a>
                             </div>
                         </div>
                     </div>

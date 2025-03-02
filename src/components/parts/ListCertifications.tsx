@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import FetchRouter from "../../utils/fetchroute";
 import { Certifications } from "../../utils/fetchTypes";
 import { DataRoute } from "../../utils/OurRoute";
 
@@ -11,40 +12,18 @@ const ListCertifications = ({ editable }: {
 
     useEffect(() => {
         if (!certifications.length) {
-            setCertifications([
-                {
-                    name: "Sertifikasi Satu",
-                    obtained_year: 2023,
-                    institution: "SMKN 4 Bandung",
-                    link: "#",
-                    image: "#",
-                    detail: "Lorem ipsum dolor sit amet"
-                },
-                {
-                    name: "Sertifikasi Dua",
-                    obtained_year: 2022,
-                    institution: "SMKN 4 Bandung",
-                    link: "#",
-                    image: "#",
-                    detail: "Lorem ipsum dolor sit amet"
-                },
-                {
-                    name: "Sertifikasi Tiga",
-                    obtained_year: 2021,
-                    institution: "SMKN 4 Bandung",
-                    link: "#",
-                    image: "#",
-                    detail: "Lorem ipsum dolor sit amet"
-                },
-                {
-                    name: "Sertifikasi Empat",
-                    obtained_year: 2020,
-                    institution: "SMKN 4 Bandung",
-                    link: "#",
-                    image: "#",
-                    detail: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat ratione voluptate vero eius dolore ex dolores amet cum esse maiores a praesentium perferendis eos, ea nostrum exercitationem molestias itaque nesciunt. Totam fugiat itaque molestias asperiores et sequi.Facilis, molestias repellat.Harum provident itaque minus tenetur.Ipsum quod voluptatem impedit.Voluptatibus, aliquam.Odit in mollitia voluptas consequatur cupiditate cumque adipisci doloremque?"
-                },
-            ]);
+            fetch(FetchRouter.Certifications)
+                .then(async (response) => {
+                    if (!response.ok) {
+                        throw response;
+                    }
+                    const responses = await response.json()
+                    setCertifications(responses)
+                })
+                .catch(err => {
+                    console.error(err)
+                    setCertifications([])
+                });
         }
     }, []);
 
@@ -66,7 +45,7 @@ const ListCertifications = ({ editable }: {
                     className="flex transition-transform duration-300"
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
-                    {certifications.map((certification, index) => (
+                    {certifications && certifications.map((certification, index) => (
                         <div key={index} className="flex-none w-full px-4">
                             <div className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
                                 {/* Field untuk Image dengan rasio 16:9 */}
@@ -149,20 +128,22 @@ const ListCertifications = ({ editable }: {
                     className={`w-3 h-3 rounded-full cursor-pointer ${currentSlide === 0 ? "bg-indigo-500" : "bg-gray-400"
                         }`}
                 ></div>
-                {/* Titik tengah */}
-                <div
-                    onClick={() => setCurrentSlide(middleSlide)}
-                    className={`w-3 h-3 rounded-full cursor-pointer ${currentSlide !== 0 && currentSlide !== certifications.length - 1
-                        ? "bg-indigo-500"
-                        : "bg-gray-400"
-                        }`}
-                ></div>
-                {/* Titik kanan (akhir) */}
-                <div
-                    onClick={() => setCurrentSlide(certifications.length - 1)}
-                    className={`w-3 h-3 rounded-full cursor-pointer ${currentSlide === certifications.length - 1 ? "bg-indigo-500" : "bg-gray-400"
-                        }`}
-                ></div>
+                {certifications.length > 1 && (<>
+                    {/* Titik tengah */}
+                    {certifications.length > 2 && (<div
+                        onClick={() => setCurrentSlide(middleSlide)}
+                        className={`w-3 h-3 rounded-full cursor-pointer ${currentSlide !== 0 && currentSlide !== certifications.length - 1
+                            ? "bg-indigo-500"
+                            : "bg-gray-400"
+                            }`}
+                    ></div>)}
+                    {/* Titik kanan (akhir) */}
+                    <div
+                        onClick={() => setCurrentSlide(certifications.length - 1)}
+                        className={`w-3 h-3 rounded-full cursor-pointer ${currentSlide === certifications.length - 1 ? "bg-indigo-500" : "bg-gray-400"
+                            }`}
+                    ></div>
+                </>)}
             </div>
         </div>
     );

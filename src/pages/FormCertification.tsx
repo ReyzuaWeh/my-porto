@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import SecondLayout from "../components/common/SecondLayout";
 import InputField from "../components/moleculs/InputField";
 import Form from "../components/templates/Form";
@@ -7,6 +8,7 @@ import { Certifications } from "../utils/fetchTypes";
 import { DataRoute } from "../utils/OurRoute";
 
 const FormCertification = () => {
+    const { id } = useParams()
     const [certification, setCertification] = useState({} as Certifications);
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -31,20 +33,39 @@ const FormCertification = () => {
     };
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        fetch(FetchRouter.Certifications + "/" + (certification.id || ""), {
+            method: certification.id ? "PATCH" : 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(certification),
+        })
+            .then((response) => response.json())
+            .then(() => alert("Success"))
+            .catch((err) => alert(err));
     }
+    useEffect(() => {
+        if (id) {
+            fetch(FetchRouter.Certifications + `/${id}`)
+                .then((response) => response.json())
+                .then((json) => setCertification(json));
+        }
+    }, [id]);
     return (
         <SecondLayout>
             <Form
                 onSubmit={onSubmit}
                 title="Form Sertifikasi"
-                cancelLabel="Delete"
-                onclickCancel={() => {
-                    fetch(FetchRouter.Certifications + `/${certification.id}`, {
-                        method: 'DELETE'
-                    }).then(() => {
-                        window.location.href = DataRoute.Dashboard
-                    }).catch(err => alert(err))
-                }}
+                {...(!certification.id ? {} : {
+                    cancelLabel: "Delete",
+                    onclickCancel: () => {
+                        fetch(FetchRouter.Certifications + `/${certification.id}`, {
+                            method: 'DELETE'
+                        }).then(() => {
+                            window.location.href = DataRoute.Dashboard
+                        }).catch(err => alert(err))
+                    }
+                })}
             >
                 <InputField
                     type="text"

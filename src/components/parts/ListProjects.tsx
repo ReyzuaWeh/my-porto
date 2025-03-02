@@ -30,9 +30,13 @@ const ListProjects = ({ setSelectedProject, editable }: {
     // Simulasi fetch data proyek
     useEffect(() => {
         if (!projects.length) {
-            fetch(FetchRouter.Projects).then((response) => response.json()).then((json) => {
-                setProjects(json);
-            });
+            fetch(FetchRouter.Projects).then(async (response) => {
+                if (!response.ok) {
+                    throw response;
+                }
+                const responses = await response.json()
+                setProjects(responses)
+            })
         }
     }, []);
 
@@ -62,7 +66,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                         </div>
 
                         {/* Overlay hover untuk menampilkan spesifikasi dan detail */}
-                        <div className="absolute inset-0 bg-black p-5 bg-opacity-75 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 bg-black p-5 bg-opacity-75 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
                             <div className="text-white text-sm">
                                 <h3 className="font-bold text-lg mb-2">{project.my_position}</h3>
                                 <div className="flex mt-2 flex-wrap justify-center">

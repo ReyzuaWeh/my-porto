@@ -35,15 +35,15 @@ const FormProject = () => {
     }
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        fetch(FetchRouter.Projects, {
-            method: 'POST',
+        fetch(FetchRouter.Projects + "/" + (dataForm.id || ""), {
+            method: id ? "PATCH" : 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataForm)
         })
             .then(response => response.json())
-            .then(json => alert(json)).catch(err => alert(err))
+            .then(() => alert("Success")).catch(err => alert(err))
     }
     useEffect(() => {
         if (id) {
@@ -57,16 +57,16 @@ const FormProject = () => {
             <Form
                 onSubmit={onSubmit}
                 title="Form Proyek"
-                cancelLabel="Delete"
-                onclickCancel={() => {
-                    if (id) {
-                        fetch(FetchRouter.Projects + `/${id}`, {
+                {...(!dataForm.id ? {} : {
+                    cancelLabel: "Delete",
+                    onclickCancel: () => {
+                        fetch(FetchRouter.Projects + `/${dataForm.id}`, {
                             method: 'DELETE'
                         }).then(() => {
                             window.location.href = DataRoute.Dashboard
                         }).catch(err => alert(err))
                     }
-                }}
+                })}
             >
                 <InputField
                     type="text"

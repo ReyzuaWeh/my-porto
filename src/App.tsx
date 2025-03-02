@@ -14,10 +14,11 @@ function App() {
       <Routes>
         <Route path={DataRoute["Home"]} element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/my" element={<DashboardPage />} />
+        <Route path={DataRoute["Dashboard"]} element={<DashboardPage />} />
         <Route path={DataRoute["FormProject"]} element={<FormProject />} />
         <Route path={DataRoute["FormProject"] + "/:id"} element={<FormProject />} />
         <Route path={DataRoute["FormCertification"]} element={<FormCertification />} />
+        <Route path={DataRoute["FormCertification"] + "/:id"} element={<FormCertification />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </Router>
