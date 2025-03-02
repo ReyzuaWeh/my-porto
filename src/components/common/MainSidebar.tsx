@@ -5,7 +5,7 @@ import { MdOutlineEmail } from "react-icons/md"
 import { Project } from "../../utils/fetchTypes"
 import { DataRoute } from "../../utils/OurRoute"
 
-const MainSidebar = ({ setSelectedProjects }: {
+const MainSidebar = ({ }: {
     setSelectedProjects?: React.Dispatch<React.SetStateAction<Project | null>>
 }) => {
     const [OpenSidebar, SetOpenSidebar] = useState(false)
@@ -33,6 +33,7 @@ const MainSidebar = ({ setSelectedProjects }: {
             my_position: "Developer",
         },
     ]);
+    // @ts-ignore
     const projects = onProgressProjects;
     const [activeHash, setActiveHash] = useState(window.location.pathname + window.location.hash || `${DataRoute["Home"]}#about`);
 
