@@ -2,7 +2,9 @@ import { useState } from "react";
 import SecondLayout from "../components/common/SecondLayout";
 import InputField from "../components/moleculs/InputField";
 import Form from "../components/templates/Form";
+import FetchRouter from "../utils/fetchroute";
 import { Certifications } from "../utils/fetchTypes";
+import { DataRoute } from "../utils/OurRoute";
 
 const FormCertification = () => {
     const [certification, setCertification] = useState({} as Certifications);
@@ -35,6 +37,14 @@ const FormCertification = () => {
             <Form
                 onSubmit={onSubmit}
                 title="Form Sertifikasi"
+                cancelLabel="Delete"
+                onclickCancel={() => {
+                    fetch(FetchRouter.Certifications + `/${certification.id}`, {
+                        method: 'DELETE'
+                    }).then(() => {
+                        window.location.href = DataRoute.Dashboard
+                    }).catch(err => alert(err))
+                }}
             >
                 <InputField
                     type="text"
@@ -87,7 +97,7 @@ const FormCertification = () => {
                     htmlFor="detail"
                     text="Detail"
                     id="detail"
-                    value={certification?.detail}
+                    value={certification?.detail || ""}
                     onChange={onChange}
                 />
             </Form>

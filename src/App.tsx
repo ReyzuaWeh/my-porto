@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my" element={<DashboardPage />} />
         <Route path={DataRoute["FormProject"]} element={<FormProject />} />
+        <Route path={DataRoute["FormProject"] + "/:id"} element={<FormProject />} />
         <Route path={DataRoute["FormCertification"]} element={<FormCertification />} />
         <Route path="*" element={<Page404 />} />
       </Routes>

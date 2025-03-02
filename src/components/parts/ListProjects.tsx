@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import defaultImage from "../../assets/default.png";
+import FetchRouter from "../../utils/fetchroute";
 import { Project } from "../../utils/fetchTypes";
 import { truncateText } from "../../utils/functionSets";
+import { DataRoute } from "../../utils/OurRoute";
 
 const ListProjects = ({ setSelectedProject, editable }: {
     setSelectedProject?: React.Dispatch<React.SetStateAction<Project | null>> | null,
@@ -27,58 +30,9 @@ const ListProjects = ({ setSelectedProject, editable }: {
     // Simulasi fetch data proyek
     useEffect(() => {
         if (!projects.length) {
-            setProjects([
-                {
-                    title: 'Project One',
-                    institution: 'SMKN 4 Bandung',
-                    my_position: "Developer",
-                    image: "https://picsum.photos/id/684/600/400",
-                    link: null,
-                    specification: ["React", "Postgres", "JS"],
-                    detail: "Lorem ipsum dolor sit amet"
-                },
-                {
-                    title: 'Project Two',
-                    institution: 'SMKN 4 Bandung',
-                    my_position: "Developer",
-                    image: "https://picsum.photos/id/684/600/400",
-                    link: "#",
-                    specification: ["React", "Postgres", "JS"],
-                    detail:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia tempore ea maxime nemo vero laudantium dignissimos delectus quo magnam voluptatem! Veniam ea vero vel placeat asperiores soluta voluptates sint explicabo."
-                },
-                {
-                    title: 'Project Three',
-                    institution: 'SMKN 4 Bandung',
-                    my_position: "Developer",
-                    image: "https://picsum.photos/id/684/600/400",
-                    link: "#",
-                    specification: ["React", "Postgres", "JS"],
-                    detail: "Lorem ipsum dolor sit amet",
-                    date: "2023"
-                },
-                {
-                    title: 'Project Two',
-                    institution: 'SMKN 4 Bandung',
-                    my_position: "Developer",
-                    image: "https://picsum.photos/id/684/600/400",
-                    link: "#",
-                    specification: ["React", "Postgres", "JS"],
-                    detail:
-                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia tempore ea maxime nemo vero laudantium dignissimos delectus quo magnam voluptatem! Veniam ea vero vel placeat asperiores soluta voluptates sint explicabo."
-                },
-                {
-                    title: 'Project Three',
-                    institution: 'SMKN 4 Bandung',
-                    my_position: "Developer",
-                    image: "https://picsum.photos/id/684/600/400",
-                    link: "#",
-                    specification: ["React", "Postgres", "JS"],
-                    detail: "Lorem ipsum dolor sit amet",
-                    date: "2023"
-                },
-                // Tambahkan data proyek lainnya untuk menguji pagination
-            ]);
+            fetch(FetchRouter.Projects).then((response) => response.json()).then((json) => {
+                setProjects(json);
+            });
         }
     }, []);
 
@@ -91,15 +45,13 @@ const ListProjects = ({ setSelectedProject, editable }: {
                         className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                     >
                         {/* Field untuk Image dengan rasio 16:9 */}
-                        {project.image && (
-                            <div className="w-full aspect-video mb-4">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover rounded-md"
-                                />
-                            </div>
-                        )}
+                        <div className="w-full bg-transparent aspect-video mb-4">
+                            <img
+                                src={project?.image || defaultImage}
+                                alt={""}
+                                className="w-full h-full object-cover rounded-md"
+                            />
+                        </div>
 
                         {/* Konten default: Title dan nama organisasi */}
                         <div className="relative">
@@ -110,7 +62,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                         </div>
 
                         {/* Overlay hover untuk menampilkan spesifikasi dan detail */}
-                        <div className="absolute inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center p-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute inset-0 bg-black p-5 bg-opacity-75 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                             <div className="text-white text-sm">
                                 <h3 className="font-bold text-lg mb-2">{project.my_position}</h3>
                                 <div className="flex mt-2 flex-wrap justify-center">
@@ -126,7 +78,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                                 <p className="hidden sm:block">{truncateText(project.detail || "Belum ada detail", 150)}</p>
                                 <div className="w-full mt-4 flex justify-center items-center">
                                     {editable && <a
-                                        href="#"
+                                        href={`${DataRoute.FormProject}/${project.id}`}
                                         className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
                                     >
                                         Edit

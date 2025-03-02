@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Certifications } from "../../utils/fetchTypes";
+import { DataRoute } from "../../utils/OurRoute";
 
 const ListCertifications = ({ editable }: {
     editable?: boolean | null
@@ -103,7 +104,7 @@ const ListCertifications = ({ editable }: {
                                     </div>
                                     <div className="w-full mt-4 flex justify-center items-center">
                                         {editable && <a
-                                            href="#"
+                                            href={DataRoute.FormCertification + "/" + certification.id}
                                             className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
                                         >
                                             Edit

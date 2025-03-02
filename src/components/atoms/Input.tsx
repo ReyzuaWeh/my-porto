@@ -14,7 +14,7 @@ const Input = ({
                 required={required}
                 id={id}
                 type={type}
-                value={value}
+                {...(type !== 'file' ? { value: value } : {})}
                 onChange={onChange}
                 placeholder={placeholder}
                 className={className ||
@@ -25,7 +25,7 @@ const Input = ({
                 }
             />
             {type === "file" && (value ? (
-                <a href={value} className="text-indigo-200 opacity-75 text-xs">View File</a>
+                <a href={value as string} target="_blank" className="text-indigo-200 opacity-75 text-xs">View File</a>
             ) : <span className="text-indigo-200 opacity-75 text-xs">No file attached</span>)}
         </>
     )

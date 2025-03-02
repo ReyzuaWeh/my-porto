@@ -6,4 +6,9 @@ interface InputLabelProps extends InputProps, LabelProps {
 interface TextAreaLabelProps extends TextAreaProps, LabelProps {
     classNameInputField?: string
 }
-export type { InputLabelProps, TextAreaLabelProps };
+interface SubmitBackProps {
+    cancelLabel?: string;
+    onclickCancel?: () => void;
+}
+export type { InputLabelProps, SubmitBackProps, TextAreaLabelProps };
+

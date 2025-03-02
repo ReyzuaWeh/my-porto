@@ -1,7 +1,7 @@
 interface InputProps {
     id?: string
     type?: React.HTMLInputTypeAttribute
-    value?: any
+    value?: string | number | readonly string[] | undefined
     onChange?: React.ChangeEventHandler<HTMLInputElement>
     placeholder?: string
     required?: boolean
@@ -10,7 +10,7 @@ interface InputProps {
 interface TextAreaProps {
     id?: string
     rows?: number
-    value?: any
+    value?: string | number | readonly string[] | undefined
     onChange?: React.ChangeEventHandler<HTMLTextAreaElement>
     placeholder?: string
     classNameTextArea?: string | null

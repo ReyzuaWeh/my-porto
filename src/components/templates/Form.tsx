@@ -6,6 +6,8 @@ const Form = ({
     onSubmit,
     children,
     action,
+    cancelLabel,
+    onclickCancel
 }: FormTemplateProps) => {
     return (
         <form
@@ -17,7 +19,10 @@ const Form = ({
             <div className="">
                 {children}
             </div>
-            <SubmitBackForm />
+            <SubmitBackForm
+                cancelLabel={cancelLabel}
+                onclickCancel={onclickCancel}
+            />
         </form>
     )
 }

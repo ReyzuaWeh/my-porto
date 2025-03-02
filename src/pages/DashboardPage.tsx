@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import ListCertifications from "../components/parts/ListCertifications";
 import ListProjects from "../components/parts/ListProjects";
+import DetailProjectPopUp from "../components/specific/DetailProjectPopUp";
 import { DataRoute } from "../utils/OurRoute";
+import { Project } from "../utils/fetchTypes";
 
 const DashboardPage = () => {
     const [selectedTab, setSelectedTab] = useState("projects");
+    const [selectedProject, setSelectedProject] = useState<null | Project>(null);
 
     useEffect(() => {
         document.title = "Dashboard";
@@ -35,7 +38,7 @@ const DashboardPage = () => {
                 <div className="min-w-full flex justify-center space-x-0 md:space-x-4">
                     <button
                         onClick={() => setSelectedTab("projects")}
-                        className={`md:py-2 px-4 font-bold ${selectedTab === "projects"
+                        className={`md:py-2 px-4 font-bold cursor-pointer ${selectedTab === "projects"
                             ? "border-b-2 border-indigo-600 text-indigo-600"
                             : "text-gray-400"
                             }`}
@@ -44,7 +47,7 @@ const DashboardPage = () => {
                     </button>
                     <button
                         onClick={() => setSelectedTab("certifications")}
-                        className={`md:py-2 px-4 font-bold ${selectedTab === "certifications"
+                        className={`md:py-2 px-4 font-bold cursor-pointer ${selectedTab === "certifications"
                             ? "border-b-2 border-indigo-600 text-indigo-600"
                             : "text-gray-400"
                             }`}
@@ -64,7 +67,11 @@ const DashboardPage = () => {
                                 Add
                             </a>
                         </div>
-                        <ListProjects editable={true} />
+                        <ListProjects editable={true} setSelectedProject={setSelectedProject} />
+                        <DetailProjectPopUp
+                            selectedProject={selectedProject}
+                            setSelectedProject={setSelectedProject}
+                        />
                     </div>
                 )}
                 {selectedTab === "certifications" && (

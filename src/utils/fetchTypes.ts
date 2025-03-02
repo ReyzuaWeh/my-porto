@@ -9,7 +9,7 @@ interface Project {
     link?: string | null;
     specification?: string[] | null;
     detail?: string | null;
-    date?: string | null;
+    date?: Date | null;
 }
 
 interface Certifications {
