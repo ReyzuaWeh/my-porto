@@ -32,7 +32,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     title: 'Project One',
                     institution: 'SMKN 4 Bandung',
                     my_position: "Developer",
-                    image: "#",
+                    image: "https://picsum.photos/id/684/600/400",
                     link: null,
                     specification: ["React", "Postgres", "JS"],
                     detail: "Lorem ipsum dolor sit amet"
@@ -41,7 +41,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     title: 'Project Two',
                     institution: 'SMKN 4 Bandung',
                     my_position: "Developer",
-                    image: "#",
+                    image: "https://picsum.photos/id/684/600/400",
                     link: "#",
                     specification: ["React", "Postgres", "JS"],
                     detail:
@@ -51,7 +51,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     title: 'Project Three',
                     institution: 'SMKN 4 Bandung',
                     my_position: "Developer",
-                    image: "#",
+                    image: "https://picsum.photos/id/684/600/400",
                     link: "#",
                     specification: ["React", "Postgres", "JS"],
                     detail: "Lorem ipsum dolor sit amet",
@@ -61,7 +61,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     title: 'Project Two',
                     institution: 'SMKN 4 Bandung',
                     my_position: "Developer",
-                    image: "#",
+                    image: "https://picsum.photos/id/684/600/400",
                     link: "#",
                     specification: ["React", "Postgres", "JS"],
                     detail:
@@ -71,7 +71,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     title: 'Project Three',
                     institution: 'SMKN 4 Bandung',
                     my_position: "Developer",
-                    image: "#",
+                    image: "https://picsum.photos/id/684/600/400",
                     link: "#",
                     specification: ["React", "Postgres", "JS"],
                     detail: "Lorem ipsum dolor sit amet",
@@ -123,14 +123,22 @@ const ListProjects = ({ setSelectedProject, editable }: {
                                         </span>
                                     ))}
                                 </div>
-                                <p>{truncateText(project.detail || "Belum ada detail", 150)}</p>
-                                <button
-                                    onClick={() => setSelectedProject && setSelectedProject(project)}
-                                    type="button"
-                                    className="mt-4 inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    View Detail
-                                </button>
+                                <p className="hidden sm:block">{truncateText(project.detail || "Belum ada detail", 150)}</p>
+                                <div className="w-full mt-4 flex justify-center items-center">
+                                    {editable && <a
+                                        href="#"
+                                        className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
+                                    >
+                                        Edit
+                                    </a>}
+                                    <button
+                                        onClick={() => setSelectedProject && setSelectedProject(project)}
+                                        type="button"
+                                        className="bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer transition-all font-bold py-2 px-4 rounded"
+                                    >
+                                        Detail
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

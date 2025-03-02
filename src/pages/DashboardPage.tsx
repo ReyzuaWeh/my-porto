@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ListCertifications from "../components/parts/ListCertifications";
 import ListProjects from "../components/parts/ListProjects";
+import { DataRoute } from "../utils/OurRoute";
 
 const DashboardPage = () => {
     const [selectedTab, setSelectedTab] = useState("projects");
@@ -59,9 +60,9 @@ const DashboardPage = () => {
                     <div className="bg-gray-700 rounded-lg shadow p-4">
                         <div className="flex justify-between items-center">
                             <h2 className="text-xl font-bold">Projects</h2>
-                            <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
+                            <a href={DataRoute.FormProject} className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
                                 Add
-                            </button>
+                            </a>
                         </div>
                         <ListProjects editable={true} />
                     </div>
@@ -70,9 +71,9 @@ const DashboardPage = () => {
                     <div className="bg-gray-700 rounded-lg shadow p-4">
                         <div className="flex justify-between items-center">
                             <h2 className="text-xl font-bold">Certifications</h2>
-                            <button className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
+                            <a href={DataRoute.FormCertification} className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
                                 Add
-                            </button>
+                            </a>
                         </div>
                         <ListCertifications editable={true} />
                     </div>

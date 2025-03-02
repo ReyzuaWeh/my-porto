@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Certifications } from "../../utils/fetchTypes";
 
-const ListCertifications = ({ }: {
+const ListCertifications = ({ editable }: {
     editable?: boolean | null
 }) => {
     const [certifications, setCertifications] = useState<Certifications[]>([]);
@@ -97,18 +97,24 @@ const ListCertifications = ({ }: {
                                         <h3 className="font-bold text-lg mb-2">
                                             {certification.obtained_year}
                                         </h3>
-                                        <p className="text-center">
+                                        <p className="text-center hidden sm:block">
                                             {certification.detail || "Belum ada detail"}
                                         </p>
                                     </div>
-                                    <div className="mt-4">
+                                    <div className="w-full mt-4 flex justify-center items-center">
+                                        {editable && <a
+                                            href="#"
+                                            className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
+                                        >
+                                            Edit
+                                        </a>}
                                         <a
                                             href={certification.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
                                         >
-                                            View Detail
+                                            Detail
                                         </a>
                                     </div>
                                 </div>

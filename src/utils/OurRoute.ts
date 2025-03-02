@@ -1,4 +1,6 @@
-const DataRoute: Record<string, string> = {
-    "Home": "/"
+const DataRoute = {
+    "Home": "/",
+    "FormProject": "/project-form",
+    "FormCertification": "/certification-form",
 }
 export { DataRoute };
