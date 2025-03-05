@@ -20,7 +20,7 @@ const ListSkills = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900">
             {/* Container scrollable secara horizontal */}
-            <div className="w-full max-w-4xl overflow-x-auto">
+            <div className="w-full max-w-4xl p-5 overflow-x-auto">
                 <div
                     className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 border-collapse divide-x divide-y bg-gray-800"
                 >
