@@ -90,8 +90,8 @@ const ListCertifications = ({ editable }: {
                                             >
                                                 Edit
                                             </a>}
-                                            {Boolean(certification.link) && <a
-                                                href={certification.link}
+                                            {Boolean(certification.image) && <a
+                                                href={certification.image}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
