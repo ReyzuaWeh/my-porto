@@ -34,7 +34,7 @@ const MainPage = () => {
                             <p className="md:text-xl text-base text-gray-700">
                                 Saya ahli di bidang Backend Developer
                                 <span className="sm:inline hidden">
-                                    {" "}dengan pengalaman mendalam dalam membangun sistem yang efisien dan scalable
+                                    {" "}dengan pengalaman mendalam membangun sistem yang efisien dan scalable
                                 </span>
                                 .{" "}Saya terbiasa menggunakan Python dan Golang
                                 <span className="lg:inline hidden">
