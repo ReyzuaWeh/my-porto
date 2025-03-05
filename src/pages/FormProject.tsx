@@ -42,8 +42,14 @@ const FormProject = () => {
             },
             body: JSON.stringify(dataForm)
         })
-            .then(response => response.json())
-            .then(() => alert("Success")).catch(err => alert(err))
+            .then((response) => {
+                if (!response.ok) {
+                    throw response;
+                }
+                response.json()
+                alert("Success")
+            })
+            .catch((err) => alert(err));
     }
     useEffect(() => {
         if (id) {

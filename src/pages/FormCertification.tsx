@@ -40,8 +40,13 @@ const FormCertification = () => {
             },
             body: JSON.stringify(certification),
         })
-            .then((response) => response.json())
-            .then(() => alert("Success"))
+            .then((response) => {
+                if (!response.ok) {
+                    throw response;
+                }
+                response.json()
+                alert("Success")
+            })
             .catch((err) => alert(err));
     }
     useEffect(() => {

@@ -27,7 +27,7 @@ const ListSkills = () => {
                     {skills.map((skill, index) => (
                         <div
                             key={index}
-                            className="self-center flex items-center hover:bg-fuchsia-200 transition-all
+                            className="self-center flex items-center hover:bg-fuchsia-200 active:bg-fuchsia-200 transition-all
                                         duration-500
                                         w-full justify-center min-h-24 border-r border-b"
                         >

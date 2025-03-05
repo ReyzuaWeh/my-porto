@@ -49,7 +49,7 @@ const ListCertifications = ({ editable }: {
                     >
                         {certifications.map((certification, index) => (
                             <div key={index} className="flex-none w-full px-4">
-                                <div className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
+                                <div className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg active:shadow-lg transition-shadow duration-300 overflow-hidden group">
                                     {/* Field untuk Image dengan rasio 16:9 */}
                                     {certification.image && (
                                         <div className="w-full aspect-video mb-4">
@@ -74,7 +74,7 @@ const ListCertifications = ({ editable }: {
                                     </div>
 
                                     {/* Overlay hover: Detail sertifikasi */}
-                                    <div className="absolute inset-0 bg-black bg-opacity-75 flex flex-col justify-center items-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="absolute inset-0 bg-black bg-opacity-75 flex flex-col justify-center items-center p-4 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300">
                                         <div className="flex flex-col justify-center items-center text-white text-sm">
                                             <h3 className="font-bold text-lg mb-2">
                                                 {certification.obtained_year}
@@ -90,14 +90,14 @@ const ListCertifications = ({ editable }: {
                                             >
                                                 Edit
                                             </a>}
-                                            <a
+                                            {Boolean(certification.link) && <a
                                                 href={certification.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
                                             >
                                                 Detail
-                                            </a>
+                                            </a>}
                                         </div>
                                     </div>
                                 </div>

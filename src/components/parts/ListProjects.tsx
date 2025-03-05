@@ -48,7 +48,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                     {paginationProjects.map((project, index) => (
                         <div
                             key={index}
-                            className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                            className="relative bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg active:shadow-lg transition-shadow duration-300 overflow-hidden"
                         >
                             {/* Field untuk Image dengan rasio 16:9 */}
                             <div className="w-full bg-transparent aspect-video mb-4">
@@ -68,7 +68,7 @@ const ListProjects = ({ setSelectedProject, editable }: {
                             </div>
 
                             {/* Overlay hover untuk menampilkan spesifikasi dan detail */}
-                            <div className="absolute inset-0 bg-black p-5 bg-opacity-75 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
+                            <div className="absolute inset-0 bg-black p-5 bg-opacity-75 flex flex-col items-center justify-center opacity-0 hover:opacity-100 active:opacity-100 transition-opacity duration-500">
                                 <div className="text-white text-sm">
                                     <h3 className="font-bold text-lg mb-2">{project.my_position}</h3>
                                     <div className="flex mt-2 flex-wrap justify-center">
@@ -85,14 +85,14 @@ const ListProjects = ({ setSelectedProject, editable }: {
                                     <div className="w-full mt-4 flex justify-center items-center">
                                         {editable && <a
                                             href={`${DataRoute.FormProject}/${project.id}`}
-                                            className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
+                                            className="bg-fuchsia-600 hover:bg-fuchsia-700 active:bg-fuchsia-700 text-white transition-all font-bold py-2 px-4 rounded mr-2"
                                         >
                                             Edit
                                         </a>}
                                         <button
                                             onClick={() => setSelectedProject && setSelectedProject(project)}
                                             type="button"
-                                            className="bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer transition-all font-bold py-2 px-4 rounded"
+                                            className="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-600 text-white cursor-pointer transition-all font-bold py-2 px-4 rounded"
                                         >
                                             Detail
                                         </button>
