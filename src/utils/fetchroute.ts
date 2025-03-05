@@ -1,4 +1,4 @@
-const fetchorigin = window.location.protocol === "https:" ? "http://localhost:8000/" : "http://localhost:8000/";
+const fetchorigin = window.location.protocol === "https:" ? "http://localhost:8000/" : "https://my-data-porto.vercel.app/";
 const FetchRouter = {
     Main: fetchorigin,
     Projects: fetchorigin + "projects",
