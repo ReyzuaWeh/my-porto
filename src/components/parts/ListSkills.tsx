@@ -22,7 +22,7 @@ const ListSkills = () => {
             {/* Container scrollable secara horizontal */}
             <div className="w-full max-w-4xl overflow-x-auto">
                 <div
-                    className="grid grid-cols-4 border-collapse divide-x divide-y bg-gray-800"
+                    className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 border-collapse divide-x divide-y bg-gray-800"
                 >
                     {skills.map((skill, index) => (
                         <div
